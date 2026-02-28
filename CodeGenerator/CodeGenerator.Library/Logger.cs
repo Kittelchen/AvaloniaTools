@@ -62,6 +62,4 @@ public class Logger
     public void Warning(string message) => Log(message, Constants.Warning, ConsoleColor.Yellow, ConsoleColor.Yellow, ConsoleColor.Black);
     public void Debug(string message) => Log(message, Constants.Debug, ConsoleColor.Gray, ConsoleColor.Gray, ConsoleColor.Black);    
     public void Success(string message) => Log(message, Constants.Success, ConsoleColor.Green, ConsoleColor.Green, ConsoleColor.Black);
-    
-    
 }
