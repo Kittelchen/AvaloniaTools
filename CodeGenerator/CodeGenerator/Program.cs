@@ -1,11 +1,8 @@
 ﻿using CodeGenerator.Library;
 Generator gen = new Generator();
 
-if (gen.SetUp())
+gen.SetUp(AppTypes.Gui);
+if (gen.SetUp(AppTypes.Cli))
 {
     gen.Execute(); 
-}
-else
-{
-    Console.WriteLine("CodeGen failed");
 }
