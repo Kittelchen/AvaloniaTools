@@ -10,8 +10,8 @@ public class Constants
     public static readonly string Warning = "WRN";
     public static readonly string Success = "SUC";
 
-    public static readonly string Open_Bracket = "[";
-    public static readonly string Close_Bracket = "]";
+    public static readonly string OpenBracket = "[";
+    public static readonly string CloseBracket = "]";
     
     public static readonly string DefaultLogFolder = "./log/";
 }

@@ -1,18 +1,10 @@
-﻿
-using System;
-
-namespace CodeGenerator.Library;
+﻿namespace CodeGenerator.Library;
 
 public class Logger
 {
     private readonly bool _useColors;
     private string _logFilePath;
-
-    public string LogFilePath
-    {
-        get => _logFilePath;
-        set => _logFilePath = value;
-    }
+    
     public Logger(bool useColors = true, string? logDirectory = null)
     {
         _useColors = useColors;
@@ -29,14 +21,14 @@ public class Logger
         ConsoleColor? foreColorBox = null)
     {
         string timestamp = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}]";
-        string output = $"{timestamp} {Constants.Open_Bracket}{prefix}{Constants.Close_Bracket} {message}";
+        string output = $"{timestamp} {Constants.OpenBracket}{prefix}{Constants.CloseBracket} {message}";
 
         if (_useColors && foreColor.HasValue && backgroundColor.HasValue && foreColorBox.HasValue)
         {
             Console.Write(timestamp + " ");
             Console.BackgroundColor = backgroundColor.Value;
             Console.ForegroundColor = foreColorBox.Value;
-            Console.Write(Constants.Open_Bracket + prefix + Constants.Close_Bracket);
+            Console.Write(Constants.OpenBracket + prefix + Constants.CloseBracket);
             Console.ResetColor();
             Console.ForegroundColor = foreColor.Value;
             Console.Write(" " + message);
@@ -46,7 +38,7 @@ public class Logger
         else
         {
             Console.Write(timestamp + " ");
-            Console.Write(Constants.Open_Bracket + prefix + Constants.Close_Bracket);
+            Console.Write(Constants.OpenBracket + prefix + Constants.CloseBracket);
             Console.Write(" " + message);
             Console.WriteLine();
         }

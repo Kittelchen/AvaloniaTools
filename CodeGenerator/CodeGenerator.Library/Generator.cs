@@ -4,7 +4,7 @@ namespace CodeGenerator.Library;
 
 public class Generator
 {
-    private Logger _logger;
+    private Logger? _logger;
     public bool Initialize(AppTypes type = AppTypes.CLI)
     {
         // load config file
