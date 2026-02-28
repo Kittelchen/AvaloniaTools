@@ -2,17 +2,14 @@
 
 public class Generator
 {
-    private Logger _logger = new Logger(true);
-    public bool SetUp(AppTypes type = AppTypes.CLI)
+    private Logger _logger;
+    public bool Initialize(AppTypes type = AppTypes.CLI)
     {
-        if (type == AppTypes.CLI)
-        {
-            _logger.Info("Using CLI");
-            _logger.Success("Setup successful!");
-            return true;
-        }
-        _logger.Error("Setup failed!");
-        return false;
+        var config = AppConfig.Load("config.json");
+        _logger = new (true, config.LogDirectory);
+        _logger.Success($"Config file successfully loaded!");
+
+        return true;
     }
 
     public bool Execute()

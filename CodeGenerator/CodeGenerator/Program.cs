@@ -1,7 +1,8 @@
 ﻿using CodeGenerator.Library;
+
 Generator gen = new Generator();
 
-if (gen.SetUp(AppTypes.CLI))
+if (gen.Initialize(AppTypes.CLI))
 {
     gen.Execute(); 
 }

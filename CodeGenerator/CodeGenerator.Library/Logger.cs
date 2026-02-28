@@ -6,8 +6,13 @@ namespace CodeGenerator.Library;
 public class Logger
 {
     private readonly bool _useColors;
-    private readonly string _logFilePath;
-    
+    private string _logFilePath;
+
+    public string LogFilePath
+    {
+        get => _logFilePath;
+        set => _logFilePath = value;
+    }
     public Logger(bool useColors = true, string? logDirectory = null)
     {
         _useColors = useColors;
@@ -16,7 +21,6 @@ public class Logger
 
         Directory.CreateDirectory(dir);
         _logFilePath = Path.Combine(dir, $"{DateTime.Now:yyyy-MM-dd}_CodeGenerator.log");
-        
     }
 
     public void Log(string message, string prefix, 
