@@ -5,6 +5,7 @@ namespace CodeGenerator.Library;
 public class AppConfig
 {
     public string LogDirectory { get; set; } = "log";
+    public string ConnectionString { get; set; } = string.Empty;
     
     public static AppConfig Load(string path)
     {

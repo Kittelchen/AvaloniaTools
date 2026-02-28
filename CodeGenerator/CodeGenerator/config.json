@@ -1,3 +1,4 @@
 ﻿{
-  "LogDirectory": "log"
+  "LogDirectory": "log",
+  "ConnectionString": "Data Source=C:\\temp\\logs.db"
 }
