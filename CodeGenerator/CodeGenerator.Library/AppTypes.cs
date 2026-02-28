@@ -2,6 +2,6 @@
 
 public enum AppTypes
 {
-    Cli,
-    Gui
+    CLI,
+    GUI
 }
