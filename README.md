@@ -1,0 +1,1 @@
+template for avalonia tools and code generator
