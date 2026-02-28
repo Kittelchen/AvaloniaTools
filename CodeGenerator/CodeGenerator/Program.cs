@@ -1,4 +1,4 @@
-﻿using CodeGenerator;
+﻿using CodeGenerator.Library;
 
 Console.WriteLine("Setup CodeGenerator and start it");
 Generator gen = new Generator();

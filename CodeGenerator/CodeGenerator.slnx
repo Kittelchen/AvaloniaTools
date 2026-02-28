@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="../Libaries/CommandLine/CommandLine.csproj" />
   <Project Path="../UnitTests/CodeGeneratorUnitTest/CodeGeneratorUnitTest.csproj" />
+  <Project Path="CodeGenerator.Library/CodeGenerator.Library.csproj" />
   <Project Path="CodeGenerator/CodeGenerator.csproj" />
 </Solution>

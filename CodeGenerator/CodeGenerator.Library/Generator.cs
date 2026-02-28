@@ -1,4 +1,4 @@
-﻿namespace CodeGenerator;
+﻿namespace CodeGenerator.Library;
 
 public class Generator
 {
@@ -7,8 +7,8 @@ public class Generator
         return false;
     }
 
-    public void Execute()
+    public bool Execute()
     {
-        
+        return false;
     }
 }
