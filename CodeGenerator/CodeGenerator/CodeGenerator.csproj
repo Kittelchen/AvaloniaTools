@@ -8,7 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Libaries\CommandLine\CommandLine.csproj" />
       <ProjectReference Include="..\CodeGenerator.Library\CodeGenerator.Library.csproj" />
     </ItemGroup>
 

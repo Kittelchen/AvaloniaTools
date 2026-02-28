@@ -2,8 +2,16 @@
 
 public class Generator
 {
-    public bool SetUp()
+    private Logger _logger = new Logger(true);
+    public bool SetUp(AppTypes type = AppTypes.Cli)
     {
+        if (type == AppTypes.Cli)
+        {
+            _logger.Info("Using CLI");
+            _logger.Success("Setup successful!");
+            return true;
+        }
+        _logger.Error("Setup failed!");
         return false;
     }
 
@@ -11,4 +19,5 @@ public class Generator
     {
         return false;
     }
+    
 }
