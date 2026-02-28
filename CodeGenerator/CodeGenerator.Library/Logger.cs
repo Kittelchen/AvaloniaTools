@@ -40,11 +40,11 @@ public class Logger
         }
     }
 
-    public void Info(string message) => Log(message, "INF", ConsoleColor.White, ConsoleColor.White, ConsoleColor.Black);
-    public void Error(string message) => Log(message, "ERR", ConsoleColor.Red,   ConsoleColor.Red, ConsoleColor.White);
-    public void Warning(string message) => Log(message, "WRN", ConsoleColor.Yellow, ConsoleColor.Yellow, ConsoleColor.Black);
-    public void Debug(string message) => Log(message, "DBG", ConsoleColor.Gray, ConsoleColor.Gray, ConsoleColor.Black);    
-    public void Success(string message) => Log(message, "SUC", ConsoleColor.Green, ConsoleColor.Green, ConsoleColor.Black);
+    public void Info(string message) => Log(message, Constants.Info, ConsoleColor.White, ConsoleColor.White, ConsoleColor.Black);
+    public void Error(string message) => Log(message, Constants.Error, ConsoleColor.Red,   ConsoleColor.Red, ConsoleColor.White);
+    public void Warning(string message) => Log(message, Constants.Warning, ConsoleColor.Yellow, ConsoleColor.Yellow, ConsoleColor.Black);
+    public void Debug(string message) => Log(message, Constants.Debug, ConsoleColor.Gray, ConsoleColor.Gray, ConsoleColor.Black);    
+    public void Success(string message) => Log(message, Constants.Success, ConsoleColor.Green, ConsoleColor.Green, ConsoleColor.Black);
     
     
 }
