@@ -13,20 +13,20 @@ public class Logger
     }
 
     public void Log(string message, string prefix, 
-        ConsoleColor? ForeColor = null, 
-        ConsoleColor? BackgroundColor = null, 
-        ConsoleColor? ForeColorBox = null)
+        ConsoleColor? foreColor = null, 
+        ConsoleColor? backgroundColor = null, 
+        ConsoleColor? foreColorBox = null)
     {
-        string timestamp = $"[{DateTime.Now:HH:mm:ss}]";
+        string timestamp = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}]";
 
-        if (_useColors && ForeColor.HasValue && BackgroundColor.HasValue && ForeColorBox.HasValue)
+        if (_useColors && foreColor.HasValue && backgroundColor.HasValue && foreColorBox.HasValue)
         {
             Console.Write(timestamp + " ");
-            Console.BackgroundColor = BackgroundColor.Value;
-            Console.ForegroundColor = ForeColorBox.Value;
+            Console.BackgroundColor = backgroundColor.Value;
+            Console.ForegroundColor = foreColorBox.Value;
             Console.Write("[" + prefix + "]");
             Console.ResetColor();
-            Console.ForegroundColor = ForeColor.Value;
+            Console.ForegroundColor = foreColor.Value;
             Console.Write(" " + message);
             Console.ResetColor();
             Console.WriteLine();
