@@ -12,4 +12,6 @@ public class Constants
 
     public static readonly string Open_Bracket = "[";
     public static readonly string Close_Bracket = "]";
+    
+    public static readonly string DefaultLogFolder = "./log/";
 }
