@@ -2,7 +2,7 @@
 
 Generator gen = new Generator();
 
-if (gen.Initialize(AppTypes.CLI))
+if (gen.Initialize(@"C:\temp\config.json"))
 {
     gen.Execute(); 
 }
