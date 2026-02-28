@@ -1,7 +1,7 @@
 ﻿using CodeGenerator;
 
 Console.WriteLine("Setup CodeGenerator and start it");
-CodeGenerator.CodeGenerator gen = new CodeGenerator.CodeGenerator();
+Generator gen = new Generator();
 
 if (gen.SetUp())
 {

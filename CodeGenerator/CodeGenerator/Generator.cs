@@ -1,6 +1,6 @@
 ﻿namespace CodeGenerator;
 
-public class CodeGenerator
+public class Generator
 {
     public bool SetUp()
     {
