@@ -24,7 +24,7 @@ public class Logger
             Console.Write(timestamp + " ");
             Console.BackgroundColor = backgroundColor.Value;
             Console.ForegroundColor = foreColorBox.Value;
-            Console.Write("[" + prefix + "]");
+            Console.Write(Constants.Open_Bracket + prefix + Constants.Close_Bracket);
             Console.ResetColor();
             Console.ForegroundColor = foreColor.Value;
             Console.Write(" " + message);
@@ -34,7 +34,7 @@ public class Logger
         else
         {
             Console.Write(timestamp + " ");
-            Console.Write("[" + prefix + "]");
+            Console.Write(Constants.Open_Bracket + prefix + Constants.Close_Bracket);
             Console.Write(" " + message);
             Console.WriteLine();
         }
