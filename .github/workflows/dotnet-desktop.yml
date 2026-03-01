@@ -20,10 +20,10 @@ jobs:
           dotnet-version: '10.0.x'   # change if needed
 
       - name: Restore dependencies
-        run: dotnet restore ..\AvaloniaTools\AvaloniaTools.slnx
+        run: dotnet restore ../AvaloniaTools/AvaloniaTools.slnx
 
       - name: Build solution
-        run: dotnet build  ..\AvaloniaTools\AvaloniaTools.slnx --configuration Release --no-restore
+        run: dotnet build  ../AvaloniaTools/AvaloniaTools.slnx --configuration Release --no-restore
 
       - name: Run codeUnitTest project
-        run: dotnet test ..\CodeGenerator\CodeGenerator\CodeGenerator.csproj --configuration Release --no-build --verbosity normal
+        run: dotnet test ../CodeGenerator/CodeGenerator/CodeGenerator.csproj --configuration Release --no-build --verbosity normal
