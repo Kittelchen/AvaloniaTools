@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CodeGenerator.Library.Generators;
+using CodeGenerator.Library.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CodeGenerator.Library;
 
@@ -15,7 +17,7 @@ public static class CommonModules
         services.AddSingleton<ILogger, Logger>();
         services.AddSingleton<IDbService, DbService>();
         
-        services.AddSingleton<SQLiteGenerator>();
+        services.AddSingleton<SqLiteGenerator>();
         services.AddSingleton<GeneratorFactory>();
         services.AddSingleton<EntityGenerator>();
         

@@ -1,4 +1,5 @@
-﻿using Common.Extensions;
+﻿using CodeGenerator.Library.Interfaces;
+using Common.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace CodeGenerator.Library;

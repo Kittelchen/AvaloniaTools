@@ -1,10 +1,9 @@
 ﻿using System.Data.Common;
 using System.Text;
 using Common.Extensions;
-using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using CodeGenerator.Library.Interfaces;
 
-namespace CodeGenerator.Library;
+namespace CodeGenerator.Library.Generators;
 
 public class EntityGenerator
 {

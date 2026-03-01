@@ -1,18 +1,19 @@
-﻿using System.Data.Common;
+﻿using CodeGenerator.Library.Core;
+using CodeGenerator.Library.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace CodeGenerator.Library;
+namespace CodeGenerator.Library.Generators;
 
-public class SQLiteGenerator : IGenerator
+public class SqLiteGenerator : IGenerator
 {
-    private readonly ILogger _logger;
-    private readonly IConfig _config;
+    private readonly ILogger? _logger;
+    private readonly IConfig? _config;
     private readonly IDbService _dbService;
     private readonly EntityGenerator _entityGenerator;
     
     private DbContext? _context;
 
-    public SQLiteGenerator(ILogger logger,
+    public SqLiteGenerator(ILogger logger,
         IConfig config,
         IDbService dbService,
         EntityGenerator entityGenerator)
@@ -36,7 +37,7 @@ public class SQLiteGenerator : IGenerator
 
     private bool Connect()
     {
-        if (_logger == null || _config == null)
+        if (_logger is null || _config is null)
             return false;
 
         try
@@ -69,8 +70,8 @@ public class SQLiteGenerator : IGenerator
             var tables = new List<string>();
             using (var cmd = connection.CreateCommand())
             {
-                cmd.CommandText = Constants.GetSQLiteTables;
-                _logger.Debug($"Running GetAllTables: {Constants.GetSQLiteTables}");
+                cmd.CommandText = Constants.GetSqLiteTables;
+                _logger.Debug($"Running GetAllTables: {Constants.GetSqLiteTables}");
                 using var reader = cmd.ExecuteReader();
                 while (reader.Read()) tables.Add(reader.GetString(0));
             }

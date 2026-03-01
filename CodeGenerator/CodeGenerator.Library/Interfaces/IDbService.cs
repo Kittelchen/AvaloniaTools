@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace CodeGenerator.Library;
+namespace CodeGenerator.Library.Interfaces;
 
 public interface IDbService
 {

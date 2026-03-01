@@ -1,4 +1,4 @@
-﻿namespace CodeGenerator.Library;
+﻿namespace CodeGenerator.Library.Interfaces;
 
 public interface IGenerator
 {

@@ -1,6 +1,6 @@
 ﻿using Common.Extensions;
 using System.Reflection;
-using Microsoft.EntityFrameworkCore;
+using CodeGenerator.Library.Interfaces;
 
 namespace CodeGenerator.Library;
 
@@ -9,8 +9,6 @@ public class Generator
     private readonly ILogger _logger;
     private readonly IConfig _config;
     private readonly GeneratorFactory _factory;
-    //protected AppConfig _config = new();
-    protected DbContext? _context;
 
     public Generator(ILogger logger, GeneratorFactory factory, IConfig config)
     {

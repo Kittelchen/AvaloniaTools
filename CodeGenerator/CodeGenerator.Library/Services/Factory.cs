@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CodeGenerator.Library.Generators;
+using CodeGenerator.Library.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CodeGenerator.Library;
 
@@ -15,7 +17,7 @@ public class GeneratorFactory
     {
         return dbType.ToLower() switch
         {
-            "sqlite" => _sp.GetRequiredService<SQLiteGenerator>(),
+            "sqlite" => _sp.GetRequiredService<SqLiteGenerator>(),
             _        => null
         };
     }

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using CodeGenerator.Library.Interfaces;
+using Newtonsoft.Json;
 
 namespace CodeGenerator.Library;
 
