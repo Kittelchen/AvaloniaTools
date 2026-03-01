@@ -32,27 +32,35 @@ public class Generator
 
     public bool Execute()
     {
-        if (_logger is null)
-            throw new InvalidOperationException("Generator not initialized.");
-
-        if (_config.GeneratorOutputPath.IsNullOrEmpty())
+        try
         {
-            _logger.Error("GeneratorOutputPath not set.");
-        }
+            if (_logger is null)
+                throw new InvalidOperationException("Generator not initialized.");
 
-        if (_config.DbType.IsNullOrEmpty())
-        {
-            _logger.Error("DbType not set.");
-        }
-        
-        var dbGenerator = _factory.Create(_config.DbType);
+            if (_config.GeneratorOutputPath.IsNullOrEmpty())
+            {
+                _logger.Error("GeneratorOutputPath not set.");
+            }
 
-        if (dbGenerator is null)
-        {
-            _logger.Error($"Unsupported DbType '{_config.DbType}' in config.");
-            return false;
+            if (_config.DbType.IsNullOrEmpty())
+            {
+                _logger.Error("DbType not set.");
+            }
+
+            var dbGenerator = _factory.Create(_config.DbType);
+
+            if (dbGenerator is null)
+            {
+                _logger.Error($"Unsupported DbType '{_config.DbType}' in config.");
+                return false;
+            }
+
+            return dbGenerator.Execute();
         }
-        
-        return dbGenerator.Execute();
+        catch (Exception ex)
+        {
+            _logger.Error($"Exception: {ex.Message}");
+            throw;
+        }
     }
 }
