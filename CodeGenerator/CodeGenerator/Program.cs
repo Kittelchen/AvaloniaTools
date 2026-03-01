@@ -10,7 +10,7 @@ var host = Host.CreateDefaultBuilder(args)
     .Build();
 
 var gen = host.Services.GetRequiredService<Generator>();
-
+// test
 if (gen.Initialize(@".\config.json"))
 {
     gen.Execute();
