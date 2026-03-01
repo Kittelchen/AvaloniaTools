@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="../Data.Model/Data.Model.csproj" />
+  <Project Path="../Libaries/Common/Common.csproj" />
   <Project Path="../UnitTests/CodeGeneratorUnitTest/CodeGeneratorUnitTest.csproj" />
   <Project Path="CodeGenerator.Library/CodeGenerator.Library.csproj" />
   <Project Path="CodeGenerator/CodeGenerator.csproj" />

@@ -2,6 +2,6 @@
 
 public interface IGenerator
 {
-    void Initialize(AppConfig config, Logger logger);
+    void Initialize();
     bool Execute();
 }

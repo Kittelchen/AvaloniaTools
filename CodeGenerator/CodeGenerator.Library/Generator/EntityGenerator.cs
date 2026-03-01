@@ -1,13 +1,34 @@
 ﻿using System.Data.Common;
 using System.Text;
+using Common.Extensions;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CodeGenerator.Library;
 
-public static class EntityGenerator
+public class EntityGenerator
 {
-    public static void GenerateSQLiteEntity(DbConnection connection, string tableName, string outputDir, Logger? logger)
+    private readonly ILogger _logger;
+    private readonly IConfig _config;
+    public EntityGenerator(ILogger logger, IConfig config)
+    {
+        _logger = logger;
+        _config = config;
+    }
+
+    public void GenerateEntity(DbConnection connection, string tableName)
+    {
+        if (_config.DbType.IsEQ("sqlite"))
+        {
+            GenerateSQLiteEntity(connection, tableName);
+        }
+        else if (_config.DbType.IsEQ("sqlserver"))
+        {
+            GenerateMssqlEntity(connection, tableName);
+        }
+    }
+    
+    private void GenerateSQLiteEntity(DbConnection connection, string tableName)
     {
         var columns = new List<(string Name, string Type, bool Nullable, bool IsPrimaryKey)>();
 
@@ -25,11 +46,11 @@ public static class EntityGenerator
             columns.Add((name, type, !notNull, isPk));
         }
 
-        GenerateDbContextFile(tableName, outputDir);
-        GenerateEntityClassFile(tableName, columns, outputDir, logger);
+        GenerateDbContextFile(tableName);
+        GenerateEntityClassFile(tableName, columns);
     }
 
-    public static void GenerateMssqlEntity(DbConnection connection, string tableName, string outputDir, Logger? logger)
+    private void GenerateMssqlEntity(DbConnection connection, string tableName)
     {
         var columns = new List<(string Name, string Type, bool Nullable, bool IsPrimaryKey)>();
 
@@ -51,10 +72,10 @@ public static class EntityGenerator
             columns.Add((name, type, nullable, isPk));
         }
 
-        GenerateEntityClassFile(tableName, columns, outputDir, logger, isSqlServer: true);
+        GenerateEntityClassFile(tableName, columns, isSqlServer: true);
     }
 
-    private static void GenerateDbContextFile(string tableName, string outputDir)
+    private void GenerateDbContextFile(string tableName)
     {
         var sb = new StringBuilder();
         string formattedTableName =  ToPascalCase(tableName);
@@ -75,18 +96,17 @@ public static class EntityGenerator
         sb.AppendLine("     public DbSet<"+formattedTableName+"> "+tableName+" { get; set; }");
         sb.AppendLine("}");
         
+        string outputDir = _config.GeneratorOutputPath;
         string filePath = Path.Combine(outputDir, "AppDbContext.cs");
         File.WriteAllText(filePath, sb.ToString());
     }
     
-    private static void GenerateEntityClassFile(
+    private void GenerateEntityClassFile(
         string tableName,
         List<(string Name, string Type, bool Nullable, bool IsPrimaryKey)> columns,
-        string outputDir,
-        Logger? logger,
         bool isSqlServer = false)
     {
-        outputDir = Path.Combine(outputDir, "Models");
+        string outputDir = Path.Combine(_config.GeneratorOutputPath, "Models");
         
         string className = ToPascalCase(tableName);
         var sb = new StringBuilder();
@@ -124,10 +144,10 @@ public static class EntityGenerator
         string filePath = Path.Combine(outputDir, className + ".cs");
         File.WriteAllText(filePath, sb.ToString());
 
-        logger?.Info($"Generated: {className}.cs");
+        _logger.Info($"Generated: {className}.cs");
     }
 
-    private static string MapDbTypeToCSharp(string dbType, bool isNullable, bool isSqlServer)
+    private string MapDbTypeToCSharp(string dbType, bool isNullable, bool isSqlServer)
     {
         string type = dbType.ToUpper();
 
@@ -162,7 +182,7 @@ public static class EntityGenerator
         }
     }
 
-    private static string ToPascalCase(string input)
+    private string ToPascalCase(string input)
     {
         return string.Concat(input.Split('_', ' ').Select(word => char.ToUpper(word[0]) + word.Substring(1).ToLower()));
     }

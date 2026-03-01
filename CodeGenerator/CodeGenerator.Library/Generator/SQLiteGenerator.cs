@@ -5,14 +5,26 @@ namespace CodeGenerator.Library;
 
 public class SQLiteGenerator : IGenerator
 {
-    private Logger? _logger;
-    private AppConfig? _config;
+    private readonly ILogger _logger;
+    private readonly IConfig _config;
+    private readonly IDbService _dbService;
+    private readonly EntityGenerator _entityGenerator;
+    
     private DbContext? _context;
 
-    public void Initialize(AppConfig config, Logger logger)
+    public SQLiteGenerator(ILogger logger,
+        IConfig config,
+        IDbService dbService,
+        EntityGenerator entityGenerator)
     {
-        _config = config;
         _logger = logger;
+        _config = config;
+        _dbService = dbService;
+        _entityGenerator = entityGenerator;
+    }
+    public void Initialize()
+    {
+
     }
 
     public bool Execute()
@@ -29,8 +41,9 @@ public class SQLiteGenerator : IGenerator
 
         try
         {
-            var provider = new DbContextProvider(_config.ConnectionString);
-            _context = provider.GetDbContext();
+            var provider = _dbService;
+            
+            _context = provider.GetDbContext(_config.ConnectionString);
 
             _logger.Success($"SQLite connection with '{_config.ConnectionString}' successful");
             return true;
@@ -70,8 +83,10 @@ public class SQLiteGenerator : IGenerator
             string outputDir = _config.GeneratorOutputPath;
             Directory.CreateDirectory(outputDir);
 
-           foreach (var table in tables)
-                EntityGenerator.GenerateSQLiteEntity(connection, table, outputDir, _logger);
+            foreach (var table in tables)
+            {
+                _entityGenerator.GenerateEntity(connection, table);
+            }
 
             _logger.Success("SQLite entity generation complete.");
             return true;

@@ -1,8 +1,18 @@
 ﻿using CodeGenerator.Library;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-Generator gen = new Generator();
+var host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices(services =>
+    {
+        CommonModules.AddCore(services); // registers Generator, ILogger, etc.
+    })
+    .Build();
 
-if (gen.Initialize(@"C:\temp\config.json"))
+// Resolve Generator from DI
+var gen = host.Services.GetRequiredService<Generator>();
+
+if (gen.Initialize(@".\config.json"))
 {
-    gen.Execute(); 
+    gen.Execute();
 }

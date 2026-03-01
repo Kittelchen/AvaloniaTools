@@ -1,15 +1,15 @@
 ﻿namespace CodeGenerator.Library;
 
-public class Logger
+public class Logger : ILogger
 {
     private readonly bool _useColors;
     private string _logFilePath;
     
-    public Logger(bool useColors = true, string? logDirectory = null)
+    public Logger(bool useColors = true)
     {
         _useColors = useColors;
 
-        string dir = string.IsNullOrEmpty(logDirectory) ? Constants.DefaultLogFolder : logDirectory;
+        string dir = @".\log\";
 
         Directory.CreateDirectory(dir);
         _logFilePath = Path.Combine(dir, $"{DateTime.Now:yyyy-MM-dd}_CodeGenerator.log");

@@ -1,48 +1,58 @@
-﻿using System.Reflection;
+﻿using Common.Extensions;
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 
 namespace CodeGenerator.Library;
 
 public class Generator
 {
-    protected Logger? _logger;
-    protected AppConfig _config = new();
+    private readonly ILogger _logger;
+    private readonly IConfig _config;
+    private readonly GeneratorFactory _factory;
+    //protected AppConfig _config = new();
     protected DbContext? _context;
 
+    public Generator(ILogger logger, GeneratorFactory factory, IConfig config)
+    {
+        _logger = logger;
+        _config = config;
+        _factory = factory;
+        
+    }
     public bool Initialize(string configPath)
     {
-        _config = AppConfig.Load(configPath);
-        _logger = new Logger(true, _config.LogDirectory);
-
         string dllVersion = Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "unknown";
         string exeVersion = Assembly.GetEntryAssembly()?.GetName().Version?.ToString() ?? "unknown";
 
         _logger.Debug($"Library (DLL) version: {dllVersion}");
         _logger.Debug($"Executable (EXE) version: {exeVersion}");
-
+        
         return true;
     }
 
     public bool Execute()
     {
-        if (_logger == null)
+        if (_logger is null)
             throw new InvalidOperationException("Generator not initialized.");
 
-        IGenerator? dbGenerator = _config.DbType.ToLower() switch
+        if (_config.GeneratorOutputPath.IsNullOrEmpty())
         {
-            "sqlite" => new SQLiteGenerator(),
-            _        => null
-        };
+            _logger.Error("GeneratorOutputPath not set.");
+        }
 
-        if (dbGenerator == null)
+        if (_config.DbType.IsNullOrEmpty())
+        {
+            _logger.Error("DbType not set.");
+        }
+        
+        var dbGenerator = _factory.Create(_config.DbType);
+
+        if (dbGenerator is null)
         {
             _logger.Error($"Unsupported DbType '{_config.DbType}' in config.");
             return false;
         }
-
-        // Pass the config and logger to the subclass
-        dbGenerator.Initialize(_config, _logger);
-
+        
         return dbGenerator.Execute();
     }
 }

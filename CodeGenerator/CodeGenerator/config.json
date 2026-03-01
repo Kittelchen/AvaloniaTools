@@ -1,4 +1,6 @@
 ﻿{
   "LogDirectory": "log",
-  "ConnectionString": "Data Source=C:\\temp\\logs.db"
+  "ConnectionString": "Data Source=C:\\temp\\MetaDb.db",
+  "DbType": "sqlite",
+  "GeneratorOutputPath": "C:\\Users\\Hans\\RiderProjects\\AvaloniaTools\\Data.Model"
 }
