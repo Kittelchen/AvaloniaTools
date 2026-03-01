@@ -33,4 +33,16 @@ public static class StringExtensions
         if (value == null || substring == null) return false;
         return value.IndexOf(substring, StringComparison.OrdinalIgnoreCase) >= 0;
     }
+    
+    public static bool IsNumeric(this string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value)) return false;
+        return double.TryParse(value, out _);
+    }
+    
+    public static bool IsInteger(this string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value)) return false;
+        return int.TryParse(value, out _);
+    }
 }
