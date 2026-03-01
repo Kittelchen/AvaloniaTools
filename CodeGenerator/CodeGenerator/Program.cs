@@ -5,11 +5,10 @@ using Microsoft.Extensions.Hosting;
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
-        CommonModules.AddCore(services); // registers Generator, ILogger, etc.
+        CommonModules.AddCore(services);
     })
     .Build();
 
-// Resolve Generator from DI
 var gen = host.Services.GetRequiredService<Generator>();
 
 if (gen.Initialize(@".\config.json"))
