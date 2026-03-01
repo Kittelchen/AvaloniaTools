@@ -1,27 +1,31 @@
 # Avalonia Code Generator
 
-Minimal code generator for **Avalonia** projects.  
-Quickly scaffold common MVVM components and keep your structure consistent.
+This here right now only generates .cs files for the Entity Framework Corre
 
 ---
 
 ## Features
 
-- Generate Views
-- Generate ViewModels
-- Generate Models
-- Generate Services
+- Generate Models from a meta database
+- Skips the updating model database for .edmx files
 
+## Upcoming Features
+
+- Generate Views and ViewModels
+- Generate SQL
+
+## Supported Languages so far
+- MSSQL
+- SQLite
 ---
 
 ## Requirements
 
 - .NET 10.0+
-- Existing Avalonia project
 
 ---
 
 ## Usage
 
 ```bash
-dotnet tool run generator --type <type> --name <Name>
+dotnet tool run CodeGenerator
