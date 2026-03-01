@@ -30,6 +30,9 @@
         <None Include="..\CodeGenerator.Library\config.json" Link="config.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
+        <None Include="..\CodeGenerator.Library\log4net.config" Link="log4net.config">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\..\Libaries\Common\Common.csproj" />
