@@ -1,0 +1,54 @@
+<Window
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:CodeGenerator.GUI.ViewModels"
+    x:Class="CodeGenerator.GUI.Views.MainWindow"
+    x:DataType="vm:MainWindowViewModel"
+    Width="800"
+    Height="600"
+    Title="Generator">
+
+    <DockPanel>
+
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_Help">
+                <MenuItem Header="About"/>
+            </MenuItem>
+        </Menu>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Big Blue Button -->
+            <Button Content="{Binding ButtonGenerateText}"
+                    Width="320"
+                    Height="90"
+                    FontSize="22"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Background="DodgerBlue"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    CornerRadius="12"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Command="{Binding GenerateCommand}"/>
+            <ScrollViewer Grid.Row="1" Margin="0,20,0,0" VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Logger.Messages}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock 
+                                Text="{Binding Text}" 
+                                FontFamily="Consolas, 'Courier New', monospace"
+                                FontSize="16"
+                                Foreground="{Binding Color}"
+                                TextWrapping="Wrap"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+    </DockPanel>
+</Window>

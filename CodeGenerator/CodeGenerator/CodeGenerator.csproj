@@ -11,7 +11,7 @@
       <ProjectReference Include="..\CodeGenerator.Library\CodeGenerator.Library.csproj" />
     </ItemGroup>
     <ItemGroup>
-        <None Update="config.json">
+        <None Include="..\CodeGenerator.Library\config.json" Link="config.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
     </ItemGroup>
