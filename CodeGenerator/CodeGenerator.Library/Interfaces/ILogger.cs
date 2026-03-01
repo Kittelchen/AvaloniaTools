@@ -2,10 +2,6 @@
 
 public interface ILogger
 {
-    public void Log(string message, string prefix,
-        ConsoleColor? foreColor = null,
-        ConsoleColor? backgroundColor = null,
-        ConsoleColor? foreColorBox = null);
     void Info(string message);
     void Warning(string message);
     void Error(string message);

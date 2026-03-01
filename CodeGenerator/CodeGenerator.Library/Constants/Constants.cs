@@ -14,4 +14,7 @@ public class Constants
     public static readonly string CloseBracket = "]";
     
     public static readonly string DefaultLogFolder = "./log/";
+
+    public static readonly string GetSQLiteTables =
+        "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';";
 }

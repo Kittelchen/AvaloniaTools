@@ -69,7 +69,8 @@ public class SQLiteGenerator : IGenerator
             var tables = new List<string>();
             using (var cmd = connection.CreateCommand())
             {
-                cmd.CommandText = "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';";
+                cmd.CommandText = Constants.GetSQLiteTables;
+                _logger.Debug($"Running GetAllTables: {Constants.GetSQLiteTables}");
                 using var reader = cmd.ExecuteReader();
                 while (reader.Read()) tables.Add(reader.GetString(0));
             }
