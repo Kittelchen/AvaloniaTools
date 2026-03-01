@@ -25,4 +25,4 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Run codeUnitTest project
-        run: dotnet test ./codeUnitTest/codeUnitTest.csproj --configuration Release --no-build --verbosity normal
+        run: dotnet test .\CodeGenerator\CodeGenerator\CodeGenerator.csproj --configuration Release --no-build --verbosity normal
