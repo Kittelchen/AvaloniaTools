@@ -6,4 +6,5 @@ public interface IConfig
     string ConnectionString { get; }
     string GeneratorOutputPath { get; }
     string DbType { get; }
+    string Namespace { get; }
 }

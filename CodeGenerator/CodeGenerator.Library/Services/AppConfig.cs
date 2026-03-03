@@ -8,7 +8,9 @@ public class AppConfig : IConfig
     public string LogDirectory { get; set; } = "log";
     public string ConnectionString { get; set; } = string.Empty;
     public string GeneratorOutputPath { get; set; } = string.Empty;
-    public string DbType { get; set; } = string.Empty;
+    
+    public string Namespace { get; set; } = string.Empty;
+    public string DbType { get;  set; } = string.Empty;
     
     public static AppConfig Load()
     {

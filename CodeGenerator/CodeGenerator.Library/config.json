@@ -2,5 +2,6 @@
   "LogDirectory": "log",
   "ConnectionString": "Data Source=C:\\temp\\MetaDb.db",
   "DbType": "sqlite",
-  "GeneratorOutputPath": "C:\\Users\\Hans\\RiderProjects\\AvaloniaTools\\Data.Model"
+  "GeneratorOutputPath": "C:\\Users\\Hans\\RiderProjects\\AvaloniaTools\\Data.Model\\OWTools",
+  "Namespace": "i40.Data.Model"
 }

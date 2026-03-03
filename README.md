@@ -1,22 +1,30 @@
 # Avalonia Code Generator
 
-This here right now only generates .cs files for the Entity Framework Corre
+A CLI tool that generates Entity Framework Core boilerplate from an existing database — models, DbContext, and more.
 
 ---
 
 ## Features
 
-- Generate Models from a meta database
-- Skips the updating model database for .edmx files
+- Generates EF Core entity classes from database tables
+- Generates `AppDbContext` with all `DbSet<T>` properties
+- Supports nullable and primary key annotations (`[Key]`, `[Required]`)
+- No `.edmx` files — works directly against a live database connection
 
 ## Upcoming Features
 
-- Generate Views and ViewModels
-- Generate SQL
+- View and ViewModel generation
+- SQL script generation
 
-## Supported Languages so far
-- MSSQL
-- SQLite
+---
+
+## Supported Databases
+
+| Database   | Status      |
+|------------|-------------|
+| SQLite     | ✅ Supported |
+| SQL Server | ✅ Supported |
+
 ---
 
 ## Requirements
@@ -25,7 +33,45 @@ This here right now only generates .cs files for the Entity Framework Corre
 
 ---
 
+## Configuration
+
+Create a `config.json` file in the same directory as the executable:
+
+```json
+{
+  "DbType": "sqlite",
+  "ConnectionString": "Data Source=mydb.db",
+  "GeneratorOutputPath": "Output",
+  "Namespace": "MyApp.Data.Model",
+  "LogDirectory": "log"
+}
+```
+
+| Field                 | Description                              |
+|-----------------------|------------------------------------------|
+| `DbType`              | `sqlite` or `sqlserver`                  |
+| `ConnectionString`    | ADO.NET connection string                |
+| `GeneratorOutputPath` | Folder where generated files are written |
+| `Namespace`           | Root namespace for generated classes     |
+| `LogDirectory`        | Folder where log files are written       |
+
+---
+
 ## Usage
 
 ```bash
 dotnet tool run CodeGenerator
+```
+
+---
+
+## Output
+
+```
+Output/
+├── AppDbContext.cs
+└── Models/
+    ├── Customer.cs
+    ├── Order.cs
+    └── Product.cs
+```
